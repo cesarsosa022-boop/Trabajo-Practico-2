@@ -9,14 +9,33 @@ package labtrapra2;
  * @author vanne
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+private int numeroSecreto;
+private String codigoSecretoStr;
+private int contadorAyudas = 0;
+private int contadorIntentos = 0;
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
+        generarCodigoSecreto();
     }
+private void generarCodigoSecreto() {
+    java.util.Random random = new java.util.Random();
+    numeroSecreto = random.nextInt(900) + 100;
+    codigoSecretoStr = String.valueOf(numeroSecreto);
 
+    txtpass1.setText(String.valueOf(codigoSecretoStr.charAt(0)));
+    txtpass2.setText(String.valueOf(codigoSecretoStr.charAt(1)));
+    txtpass3.setText(String.valueOf(codigoSecretoStr.charAt(2)));
+
+    txtpass1.setEchoChar('$');
+    txtpass2.setEchoChar('$');
+    txtpass3.setEchoChar('$');
+    
+    lblmensaje.setText("Por favor, ingresa exactamente 3 números.");
+    imagen.setText("");
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,55 +46,65 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane2 = new javax.swing.JDesktopPane();
-        jLabel4 = new javax.swing.JLabel();
-        jpNro1 = new javax.swing.JPasswordField();
-        jpNro2 = new javax.swing.JPasswordField();
-        jpNro3 = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Titulo = new javax.swing.JLabel();
+        txtpass1 = new javax.swing.JPasswordField();
+        txtpass2 = new javax.swing.JPasswordField();
+        txtpass3 = new javax.swing.JPasswordField();
+        lblmensaje = new javax.swing.JLabel();
+        txtIntento = new javax.swing.JTextField();
         jbRevelar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        imagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jDesktopPane2.setBackground(new java.awt.Color(51, 0, 51));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 51));
-        jLabel4.setText("Codigo Secreto");
+        Titulo.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        Titulo.setForeground(new java.awt.Color(255, 255, 51));
+        Titulo.setText("Codigo Secreto");
 
-        jpNro1.setText("jPasswordField1");
+        txtpass1.setText("jPasswordField1");
 
-        jpNro2.setText("jPasswordField2");
+        txtpass2.setText("jPasswordField2");
 
-        jpNro3.setText("jPasswordField3");
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel1.setText("por favor ingresa 3 numeros");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtpass3.setText("jPasswordField3");
+        txtpass3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtpass3ActionPerformed(evt);
+            }
+        });
+
+        lblmensaje.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblmensaje.setForeground(new java.awt.Color(255, 255, 0));
+        lblmensaje.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+
+        txtIntento.setBorder(javax.swing.BorderFactory.createTitledBorder("Escriba 3 digitos + Enter"));
+        txtIntento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIntentoActionPerformed(evt);
             }
         });
 
         jbRevelar.setText("Revelar");
         jbRevelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        jbRevelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRevelarActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("jLabel2");
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        imagen.setBackground(new java.awt.Color(255, 255, 255));
+        imagen.setText("jLabel2");
+        imagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
 
-        jDesktopPane2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(jpNro1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(jpNro2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(jpNro3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(Titulo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(txtpass1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(txtpass2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(txtpass3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(lblmensaje, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(txtIntento, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jbRevelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(imagen, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
         jDesktopPane2.setLayout(jDesktopPane2Layout);
@@ -84,44 +113,47 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jDesktopPane2Layout.createSequentialGroup()
                 .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                                .addComponent(jpNro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jpNro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jpNro3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jDesktopPane2Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addComponent(txtIntento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addComponent(jbRevelar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                        .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblmensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                                        .addComponent(txtpass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtpass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtpass3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jpNro3, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                    .addComponent(jpNro1)
-                    .addComponent(jpNro2))
+                    .addComponent(txtpass3, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                    .addComponent(txtpass1)
+                    .addComponent(txtpass2))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblmensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIntento, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbRevelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
@@ -130,7 +162,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -145,9 +177,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtIntentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIntentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtIntentoActionPerformed
+
+    private void jbRevelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRevelarActionPerformed
+          if (contadorAyudas >= 2) {
+        javax.swing.JOptionPane.showMessageDialog(this, "No hay más Revelaciones!", "Mensaje", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        return;
+    }
+    contadorAyudas++;
+
+    if (contadorAyudas == 1) {
+        txtpass1.setEchoChar((char) 0);
+    } else if (contadorAyudas == 2) {
+        txtpass2.setEchoChar((char) 0);
+    }
+    }//GEN-LAST:event_jbRevelarActionPerformed
+
+    private void txtpass3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpass3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpass3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,14 +235,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Titulo;
+    private javax.swing.JLabel imagen;
     private javax.swing.JDesktopPane jDesktopPane2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbRevelar;
-    private javax.swing.JPasswordField jpNro1;
-    private javax.swing.JPasswordField jpNro2;
-    private javax.swing.JPasswordField jpNro3;
+    private javax.swing.JLabel lblmensaje;
+    private javax.swing.JTextField txtIntento;
+    private javax.swing.JPasswordField txtpass1;
+    private javax.swing.JPasswordField txtpass2;
+    private javax.swing.JPasswordField txtpass3;
     // End of variables declaration//GEN-END:variables
 }
