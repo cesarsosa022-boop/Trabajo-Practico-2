@@ -24,6 +24,8 @@ private void generarCodigoSecreto() {
     java.util.Random random = new java.util.Random();
     numeroSecreto = random.nextInt(900) + 100;
     codigoSecretoStr = String.valueOf(numeroSecreto);
+    
+    imagen.setVisible(false);
 
     txtpass1.setText(String.valueOf(codigoSecretoStr.charAt(0)));
     txtpass2.setText(String.valueOf(codigoSecretoStr.charAt(1)));
@@ -45,6 +47,8 @@ private void generarCodigoSecreto() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jDesktopPane2 = new javax.swing.JDesktopPane();
         Titulo = new javax.swing.JLabel();
         txtpass1 = new javax.swing.JPasswordField();
@@ -54,6 +58,10 @@ private void generarCodigoSecreto() {
         txtIntento = new javax.swing.JTextField();
         jbRevelar = new javax.swing.JButton();
         imagen = new javax.swing.JLabel();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +102,7 @@ private void generarCodigoSecreto() {
         });
 
         imagen.setBackground(new java.awt.Color(255, 255, 255));
+        imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/labtrapra2/icons/trofeo64.png"))); // NOI18N
         imagen.setText("jLabel2");
         imagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
 
@@ -178,7 +187,28 @@ private void generarCodigoSecreto() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtIntentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIntentoActionPerformed
-        // TODO add your handling code here:
+        String cadena = txtIntento.getText();
+        
+        if(cadena.length() == 0 || cadena.length() == 1 || cadena.length() == 2){
+            javax.swing.JOptionPane.showMessageDialog(this,"Por favor ingresa 3 números");
+            return;
+        } else {
+            if(codigoSecretoStr.compareTo(cadena) < 0){
+                javax.swing.JOptionPane.showMessageDialog(this,"El número ingresado es mayor al código secreto");
+                contadorIntentos++;
+                return;
+            }
+            if(codigoSecretoStr.compareTo(cadena) > 0){
+                javax.swing.JOptionPane.showMessageDialog(this,"El número ingresado es menor al código secreto");
+                contadorIntentos++;
+                return;
+            }
+            if(codigoSecretoStr.compareTo(cadena) == 0){
+                javax.swing.JOptionPane.showMessageDialog(this,"El número ingresado es correcto!");
+                imagen.setVisible(true);
+                return;
+            }
+        }
     }//GEN-LAST:event_txtIntentoActionPerformed
 
     private void jbRevelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRevelarActionPerformed
@@ -238,6 +268,8 @@ private void generarCodigoSecreto() {
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel imagen;
     private javax.swing.JDesktopPane jDesktopPane2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbRevelar;
     private javax.swing.JLabel lblmensaje;
     private javax.swing.JTextField txtIntento;
