@@ -124,7 +124,7 @@ private void generarCodigoSecreto() {
                     .addGroup(jDesktopPane2Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(txtIntento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                         .addComponent(jbRevelar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -172,8 +172,8 @@ private void generarCodigoSecreto() {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jDesktopPane2)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,6 +188,8 @@ private void generarCodigoSecreto() {
 
     private void txtIntentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIntentoActionPerformed
         String cadena = txtIntento.getText();
+        try{
+            Integer.parseInt(cadena);
         
         if(cadena.length() == 0 || cadena.length() == 1 || cadena.length() == 2){
             javax.swing.JOptionPane.showMessageDialog(this,"Por favor ingresa 3 números");
@@ -208,7 +210,10 @@ private void generarCodigoSecreto() {
                 imagen.setVisible(true);
                 return;
             }
-        }
+        } 
+        }catch (NumberFormatException e){
+                javax.swing.JOptionPane.showMessageDialog(this,"Caracter invalido, Inserte solo numeros");
+                }
     }//GEN-LAST:event_txtIntentoActionPerformed
 
     private void jbRevelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRevelarActionPerformed
